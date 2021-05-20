@@ -1,0 +1,29 @@
+{
+  "name": "esa-errorcodes",
+  "version": "1.0.0",
+  "description": "Assignment-4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shuraiq/ESA-ErrorCodes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shuraiq/ESA-ErrorCodes/issues"
+  },
+  "homepage": "https://github.com/Shuraiq/ESA-ErrorCodes#readme",
+  "dependencies": {
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "memory-cache": "^0.2.0",
+    "mongoose": "^5.12.10"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
