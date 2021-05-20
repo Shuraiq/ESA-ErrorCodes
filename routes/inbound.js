@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const mongoose  = require('mongoose');
 const Message = mongoose.model('Message');
-const cache = require('memory-cache');
 
-let cacheKeys = new Map() 
+const NodeCache = require('node-cache')
+const myCache = new NodeCache()
+
 
 router.post('/inbound/sms',async(req,res) => {
     let  { from , to , text  } = req.body
@@ -60,8 +61,8 @@ router.post('/inbound/sms',async(req,res) => {
     }
 
     if (text.includes("STOP") || text.includes("STOP\n") || text.includes("STOP\r") || text.includes("STOP\r\n")) {
-        cache.put(from, to, 1.44e+7) 
-        cacheKeys[from] = to
+
+        myCache.set(from, to,14400)
 
         return res.status(200).json({
             "message": "Success fully blocked for 4 hours",
@@ -91,4 +92,4 @@ router.post('/inbound/sms',async(req,res) => {
 })
 
 exports.inbound = router
-exports.cacheKeys = cacheKeys
+exports.cache = myCache

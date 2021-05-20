@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose  = require('mongoose');
 const Message = mongoose.model('Message');
-const {cacheKeys} = require('./inbound')
+const {cache} = require('./inbound')
 
 router.post('/outbound/sms', async(req ,res )=>{
     let  { from , to , text  } = req.body
@@ -57,7 +57,9 @@ router.post('/outbound/sms', async(req ,res )=>{
         })
     }
 
-    if (cacheKeys[to] == from) {
+    
+    console.log(cache.get(to))
+    if (cache.get(to) == from) {
         return res.status(406).json({
             "message": "",
             "error": "sms from " + from + " to " + to + " is blocked by STOP request"
