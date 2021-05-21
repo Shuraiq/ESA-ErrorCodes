@@ -44,6 +44,6 @@ mongoose.connection.on('error',() => {
 
 
 
-app.listen(port,(req,res) => {
+app.listen(process.env.PORT || port,(req,res) => {
     console.log("listening on port 8080")
 })
